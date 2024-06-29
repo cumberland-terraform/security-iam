@@ -1,6 +1,6 @@
 # Enterprise Terraform 
-## AWS Core Compute
-### EC2
+## AWS Core Identity
+### IAM
 
 Documentation goes here.
 
