@@ -3,15 +3,22 @@ locals {
     ## CALCULATED PROPERTIES
     # Variables that store local calculations that change based on the 
     #   the deployment configuration.
-    role_prefix                 = upper(
+    platform_policy_prefix      = upper(
+                                    join(
+                                        "-",
+                                        [
+                                            "IMP",
+                                            module.platform.agency.abbr
+                                        ]
+                                    )
+                                )
+    platform_role_prefix        = upper(
                                     join(
                                         "-",
                                         [
                                             "IMR",
                                             module.platform.agency.abbr,
-                                            module.platform.account.threeletterkey,
-                                            module.platform.acct_env.threeletterkey,
-                                            module.platform.app.fourletterkey
+                                            module.platform.account.threeletterkey
                                         ]
                                     )
                                 )

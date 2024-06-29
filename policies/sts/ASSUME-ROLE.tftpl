@@ -4,7 +4,8 @@
       {
         "Effect": "Allow",
         "Principal": {
-          "Service": "${principal}.amazonaws.com"
+          %{if svc != null} "Service": "${svc}.amazonaws.com" %{endif}
+          %{if aws != null} "AWS": "${aws}.amazonaws.com" %{endif}
         },
         "Action": "sts:AssumeRole"
       }

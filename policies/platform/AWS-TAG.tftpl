@@ -1,0 +1,53 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "EC2TagAllows",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DeleteTags",
+                "ec2:CreateTags"
+            ],
+            "Resource": [
+                "arn:aws:ec2:*:*:instance/*",
+                "arn:aws:ec2:*::snapshot/*",
+                "arn:aws:ec2:*:*:volume/*",
+                "arn:aws:ec2:*::image/*"
+            ]
+        },
+        {
+            "Sid": "ResourceTagAllows",
+            "Effect": "Allow",
+            "Action": [
+                "autoscaling:CreateAutoScalingGroup",
+                "autoscaling:CreateOrUpdateTags",
+                "autoscaling:DeleteTags",
+                "backup:TagResource",
+                "backup:UntagResource",
+                "ec2:ModifyInstanceMetadataOptions",
+                "ec2:DescribeTags",
+                "ecr:TagResource",
+                "ecr:UntagResource",
+                "elasticfilesystem:CreateTags",
+                "elasticfilesystem:DeleteTags",
+                "elasticfilesystem:CreateFileSystem",
+                "elasticloadbalancing:AddTags",
+                "elasticloadbalancing:RemoveTags",
+                "lambda:TagResource",
+                "lambda:UntagResource",
+                "s3:DeleteObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:PutBucketTagging",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",               
+                "s3:ReplicateTags",
+                "sns:TagResource",
+                "sns:UntagResource",
+                "rds:AddTagsToResource",
+                "rds:ListTagsForResource",
+                "rds:RemoveTagsFromResource"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
