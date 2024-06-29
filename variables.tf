@@ -14,14 +14,11 @@ variable "platform" {
   })
 }
 
-variable "iam_config" {
-  description                           = "IAM Configuration."
+variable "eks_config" {
+  description                           = "IAM configuration for EKS deployments."
   type                                  = object({
-    tags                                = {
-      owner                             = string
-      contact                           = string
-      cross_account_role                = bool
-      auto_cleanup                      = bool
-    }
+    cluster                             = object({
+      id                                = string
+    })
   })
 }
