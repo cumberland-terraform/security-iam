@@ -1,24 +1,20 @@
-locals {
-  service_roles             = {
-    eks_worker_node         = {
-      name                  = join(
-                              "-",
-                              [
-                                "IMR",
-                                module.platform.agency.abbr,
-                                module.platform.account.threeletterkey,
-                                module.platform.acct_env.threeletterkey,
-                                module.platform.app.fourletterkey
-                              ]
-                            )
-      assume_role_policy    = file("${path.module}/policies/sts/ec2.json")
-    }
-  }
-}
-
 resource "aws_iam_role" "service_roles" {
   for_each                  = local.service_roles
 
   name                      = each.value.name
   assume_role_policy        = each.value.assume_role_policy
+}
+
+resource "aws_iam_instance_profile" "worker-node" {
+  for_each                  = { for k,v in local.service_roles: k => v if v.instance_profile }
+
+  name                      = each.value.name
+  role                      = each.value.name
+}
+
+resource "aws_iam_role_policy_attachment" "service_role_attachment" {
+  for_each                  = local.service_role_attachments
+
+  policy_arn                = each.value.policy_arn
+  role                      = each.value.role_name
 }
