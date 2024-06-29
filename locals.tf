@@ -1,20 +1,17 @@
 locals {
-    ## CONDITIONS
-    # This is a map containing booleans that correspond to different 
-    #       deployment configurations.
-    conditions                  = {
-}
 
     ## CALCULATED PROPERTIES
     # Variables that store local calculations that change based on the 
     #   the deployment configuration.
-    prefix                      = lower(
+    role_prefix                 = upper(
                                     join(
-                                        "-", 
+                                        "-",
                                         [
-                                            module.platform.agency.oneletterkey,
+                                            "IMR",
+                                            module.platform.agency.abbr,
                                             module.platform.account.threeletterkey,
-                                            module.platform.program.key
+                                            module.platform.acct_env.threeletterkey,
+                                            module.platform.app.fourletterkey
                                         ]
                                     )
                                 )
