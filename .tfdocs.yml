@@ -1,7 +1,7 @@
 formatter: "markdown table"
 
 output:
-  file: IAM.md
+  file: EKS_AUTH.md
   mode: inject
 
 content: |-

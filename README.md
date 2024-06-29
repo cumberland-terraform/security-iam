@@ -1,6 +1,6 @@
 # Enterprise Terraform 
-## AWS Core Identity
-### IAM
+## AWS Core Compute
+### EKS Authentication
 
 Documentation goes here.
 
@@ -8,16 +8,32 @@ Documentation goes here.
 
 ```
 module "mymodule" {
-	source          = "ssh://git@source.mdthink.maryland.gov:22/et/mdt-eter-aws-core-identity-iam.git"
+	source          = "ssh://git@source.mdthink.maryland.gov:22/et/mdt-eter-aws-core-compute-eks-auth.git"
 	
-	# TODIO:vars go here
+	# TODO: vars go here
 
 }
 ```
 
-## Contributing
+## Dependencies
 
-TODO 
+### Internal
+
+TODO
+
+The ``mdt-eter-core-compute-eks`` module calls the following modules internally:
+
+- ``mdt-eter-core-security-sg``
+
+### External
+
+TODO
+
+The ``mdt-eter-core-compute-eks`` module requires the following required inputs:
+
+- Worker Node IAM Role, ingested through `eks_config.worker_node.role_name`.
+
+## Contributing
 
 ### Development
 
