@@ -8,78 +8,16 @@ locals {
     #       2. ``instance_profile``: `bool` that associates an instance profile to role.
     #       3. ``assume_role_policy``: JSON text containing assume role policy statement.
     #       4. ``policy_attachments``: List of policy ARNs to attach to role.
-    platform_service_roles             = {
-        # EKS Cluster Control Plane Role
-        eks_cluster             = {
-            name                    = "${local.platform_role_prefix}-MEKS"
+    platform_service_roles          = {
+        ec2                         = {
+            name                    = "${local.platform.prefixes.identity.role}-EC2"
             assume_role_policy      = templatefile(
                                         local.assume_role_templatefile,
-                                        { svc = "eks" }
+                                        { svc     = "ec2" }
                                     )
             policy_attachments      = [
-                # AWS Managed Policies
-                "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
-                "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
-                # Platform Policies
-            ]
-        }
-        # EKS Worker Node Role
-        eks_worker_node             = {
-            name                    = "${local.platform_role_prefix}-WEKS"
-            instance_profile        = true
-            assume_role_policy      = templatefile(
-                                        local.assume_role_templatefile,
-                                        { svc = "ec2" }
-                                    )
-            policy_attachments      = [
-                # AWS Managed Policies
-                "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
-                "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
-                "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
-                "arn:aws:iam::aws:policy/AmazonEC2FullAccess",
-                "arn:aws:iam::aws:policy/AmazonS3FullAccess",
-                "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
-                "arn:aws:iam::aws:policy/AmazonElasticFileSystemClientFullAccess",
-                # Platform Policies
                 aws_iam_policy.platform_policies["AWS-TAG"].arn
             ]
-        }
-        eks_splunk                  = {
-            name                    = "${local.platform_role_prefix}-SPNK-EKS"
-            assume_role_policy      = templatefile(
-                                        local.assume_role_templatefile,
-                                        {
-                                            # TODO
-                                            aws     = "<JENKINS-EKS-ROLE-ARN-GOES-HERE>"
-                                            svc     = "eks"
-                                        }
-                                    )
-            policy_attachments      = [
-                # AWS Managaed Policies
-
-                # Platform Policies
-                aws_iam_policy.platform_policies["AWS-TAG"].arn
-            ]
-        }
-
-        ## TODO: this is going to be decommissioned once Jenkins no longer manages EKS deployments...
-        # EKS Jenkins Role
-        eks_jenkins                 = {
-            name                    = "${local.platform_role_prefix}-JENK-EKS"
-            assume_role_policy      = templatefile(
-                                        local.assume_role_templatefile,
-                                        # TODO: inquire as to the purpose of the trust relationship
-                                        #       for this role. curious. very curious.
-                                        { principal = "<jenkins-slave-access-key-id-goes-here>"}
-                                    )
-            policy_attachments      = [
-                # AWS Managed Policies
-                "arn:aws:iam::aws:policy/AmazonECS_FullAccess",
-                "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role",
-                "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"
-                # Platform Policies
-            ]
-
         }
     }
 

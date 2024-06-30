@@ -3,25 +3,6 @@ locals {
     ## CALCULATED PROPERTIES
     # Variables that store local calculations that change based on the 
     #   the deployment configuration.
-    platform_policy_prefix      = upper(
-                                    join(
-                                        "-",
-                                        [
-                                            "IMP",
-                                            module.platform.agency.abbr
-                                        ]
-                                    )
-                                )
-    platform_role_prefix        = upper(
-                                    join(
-                                        "-",
-                                        [
-                                            "IMR",
-                                            module.platform.agency.abbr,
-                                            module.platform.account.threeletterkey
-                                        ]
-                                    )
-                                )
     tags                        = {
         Owner                   = var.iam_config.tags.owner
         Account                 = module.platform.account.threeletterkey
