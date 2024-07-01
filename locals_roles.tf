@@ -28,12 +28,12 @@ locals {
     #   to a baseline deployment, do so through the `service_roles` map above.
     #   Likewise with any policies that need attached to service roles.
     # See: https://developer.hashicorp.com/terraform/language/functions/flatten
-    platform_service_role_attachments   = tomap(flatten([
+    platform_service_role_attachments   = flatten([
         for r_key, role in local.platform_service_roles: [
             for policy in role.policy_attachments: {
                 role_name               = role.name
                 policy_arn              = policy
             } 
         ]
-    ]))
+    ])
 }

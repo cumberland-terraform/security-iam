@@ -15,7 +15,8 @@ resource "aws_iam_instance_profile" "instance_profiles" {
 }
 
 resource "aws_iam_role_policy_attachment" "service_role_attachments" {
-  for_each                  = local.platform_service_role_attachments
+  for_each                  = { for k,v in local.platform_service_role_attachments: 
+                                  k => v }
 
   policy_arn                = each.value.policy_arn
   role                      = each.value.role_name
