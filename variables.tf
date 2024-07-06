@@ -1,5 +1,5 @@
 variable "platform" {
-  description                           = "Platform configuration metadata."
+  description                           = "Platform metadata configuration object. See [Platform Module] (https://source.mdthink.maryland.gov/projects/ET/repos/mdt-eter-platform/browse) for detailed information about the permitted values for each field."
   type                                  = object({
     core_aws_id                         = string
     tenant_aws_id                       = string
@@ -15,7 +15,7 @@ variable "platform" {
 }
 
 variable "iam_config" {
-  description                           = "IAM Configuration."
+  description                           = "IAM configuration object."
   type                                  = object({
     tags                                = {
       owner                             = string
