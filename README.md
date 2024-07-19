@@ -8,7 +8,7 @@ Documentation goes here.
 
 ```
 module "mymodule" {
-	source          = "ssh://git@source.mdthink.maryland.gov:22/et/mdt-eter-aws-core-identity-iam.git"
+	source          = "ssh://git@source.mdthink.maryland.gov:22/etm/mdt-eter-aws-core-identity-iam.git"
 	
 	platform				= {
 		aws_region          = "<region-name>"
