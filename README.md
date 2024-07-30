@@ -8,9 +8,21 @@ Documentation goes here.
 
 ```
 module "mymodule" {
-	source          = "ssh://git@source.mdthink.maryland.gov:22/et/mdt-eter-aws-core-identity-iam.git"
+	source          = "ssh://git@source.mdthink.maryland.gov:22/etm/mdt-eter-aws-core-identity-iam.git"
 	
-	# TODIO:vars go here
+	platform				= {
+		aws_region          = "<region-name>"
+        account             = "<account-name>"
+        acct_env            = "<account-environment>"
+        agency              = "<agency>"
+        program             = "<program>"
+		app					= "<application>"
+        app_env             = "<application-environment>"
+        domain              = "<active-directory-domain>"
+        pca                 = "<pca-code>"
+	}
+	
+	# TODO:vars go here
 
 }
 ```
