@@ -6,6 +6,22 @@ TODO
 
 ### Usage
 
+The bare minimum deployment can be achieved with the following configuration,
+
+**providers.tf**
+
+```terraform
+provider "aws" {
+	region			        = "<region>"
+
+	assume_role {
+		role_arn                = "arn:aws:iam::<tenant-account>:role/<role-name>"
+	}
+}
+```
+
+**modules.tf**
+
 ```
 module "iam" {
 	source                  = "ssh://git@source.mdthink.maryland.gov:22/etm/mdt-eter-aws-core-identity-iam.git"
