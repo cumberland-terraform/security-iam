@@ -18,7 +18,7 @@ locals {
             policy_attachments      = [ ]
         }
         lambda                      = {
-            name                    = lower("${module.platform.prefixes.identity.iam.role}-LAMBDA-SVC")
+            name                    = lower("${module.platform.prefix}-LAMBDA-SVC")
             assume_role_policy      = templatefile(
                                         local.assume_role_templatefile,
                                         { svc = "lambda", aws = null}
