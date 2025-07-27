@@ -10,7 +10,7 @@ locals {
     #       4. ``policy_attachments``: List of policy ARNs to attach to role.
     platform_service_roles          = {
         ec2                         = {
-            name                    = "${module.platform.prefixes.identity.iam.role}-EC2"
+            name                    = lower("${module.platform.prefix}-EC2-SVC")
             assume_role_policy      = templatefile(
                                         local.assume_role_templatefile,
                                         { svc = "ec2", aws = null }
@@ -18,7 +18,7 @@ locals {
             policy_attachments      = [ ]
         }
         lambda                      = {
-            name                    = "${module.platform.prefixes.identity.iam.role}-LAMBDA"
+            name                    = lower("${module.platform.prefixes.identity.iam.role}-LAMBDA-SVC")
             assume_role_policy      = templatefile(
                                         local.assume_role_templatefile,
                                         { svc = "lambda", aws = null}
