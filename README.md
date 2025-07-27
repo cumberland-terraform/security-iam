@@ -1,6 +1,6 @@
 # Enterprise Terraform 
-## AWS Core Identity Access Management
-### IAM
+## Cumberland Cloud Platform
+## AWS Security - IAM
 
 TODO
 
@@ -24,7 +24,7 @@ provider "aws" {
 
 ```
 module "iam" {
-	source                  = "ssh://git@source.mdthink.maryland.gov:22/etm/mdt-eter-aws-core-identity-iam.git"
+	source                  = "github.com/cumberland-terraform/security-iam"
 	
 	platform				= {
 		aws_region          = "<region-name>"
@@ -34,16 +34,11 @@ module "iam" {
         program             = "<program>"
 		app					= "<application>"
         app_env             = "<application-environment>"
-        domain              = "<active-directory-domain>"
-        pca                 = "<pca-code>"
 	}
 	
     iam                     = {
         tags                = {
             owner           = "<owner>"
-            primary_contact = "<primary-contact>"
-            cross_account   = "<cross_account>"
-            auto_cleanup    = "<auto-cleanup>"
         }
     }
 

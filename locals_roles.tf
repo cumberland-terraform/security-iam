@@ -13,11 +13,17 @@ locals {
             name                    = "${module.platform.prefixes.identity.iam.role}-EC2"
             assume_role_policy      = templatefile(
                                         local.assume_role_templatefile,
-                                        { svc     = "ec2" }
+                                        { svc = "ec2" }
                                     )
-            policy_attachments      = [
-                aws_iam_policy.platform_policies["AWS-TAG"].arn
-            ]
+            policy_attachments      = [ ]
+        }
+        lambda                      = {
+            name                    = "${module.platform.prefixes.identity.iam.role}-LAMBDA"
+            assume_role_policy      = templatefile(
+                                        local.assume_role_templatefile,
+                                        { svc = "lambda"}
+                                    )
+            policy_attachments      = [ ]
         }
     }
 

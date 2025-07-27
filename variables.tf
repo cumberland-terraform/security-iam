@@ -14,11 +14,6 @@ variable "platform" {
 variable "iam" {
   description                           = "IAM configuration object."
   type                                  = object({
-    tags                                = {
-      owner                             = string
-      primary_contact                   = string
-      cross_account                     = bool
-      auto_cleanup                      = bool
-    }
+    tags                                = map(string)
   })
 }
