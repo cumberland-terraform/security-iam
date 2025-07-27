@@ -13,7 +13,7 @@ locals {
             name                    = "${module.platform.prefixes.identity.iam.role}-EC2"
             assume_role_policy      = templatefile(
                                         local.assume_role_templatefile,
-                                        { svc = "ec2" }
+                                        { svc = "ec2", aws = null }
                                     )
             policy_attachments      = [ ]
         }
@@ -21,7 +21,7 @@ locals {
             name                    = "${module.platform.prefixes.identity.iam.role}-LAMBDA"
             assume_role_policy      = templatefile(
                                         local.assume_role_templatefile,
-                                        { svc = "lambda"}
+                                        { svc = "lambda", aws = null}
                                     )
             policy_attachments      = [ ]
         }
