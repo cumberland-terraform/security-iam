@@ -9,7 +9,7 @@ locals {
             # map filename without file extension to templated policy string
             split(".", file_path)[0] => 
                 templatefile(
-                    "${path}/policies/platform/${file_path}", 
+                    "${path.module}/policies/platform/${file_path}", 
                     local.platform_templatefile_vars
                 )
     }
