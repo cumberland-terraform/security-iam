@@ -1,5 +1,5 @@
 locals {
-    assume_role_templatefile = "${path.module}/policies/sts/ASSUME-ROLE.tftpl"
+    assume_role_templatefile = "${path.module}/policies/sts/assume-role.tftpl"
     
     ## ROLE CONFIGURATION
     # Map of services roles used to generated IAM roles
