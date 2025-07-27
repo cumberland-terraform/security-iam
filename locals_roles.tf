@@ -16,6 +16,7 @@ locals {
                                         { svc = "ec2", aws = null }
                                     )
             policy_attachments      = [ ]
+            instance_profile        = true
         }
         lambda                      = {
             name                    = lower("${module.platform.prefix}-LAMBDA-SVC")
@@ -24,6 +25,7 @@ locals {
                                         { svc = "lambda", aws = null}
                                     )
             policy_attachments      = [ ]
+            instance_profile        = false
         }
     }
 
