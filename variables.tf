@@ -10,6 +10,6 @@ variable "platform" {
 variable "iam" {
   description                           = "IAM configuration object."
   type                                  = object({
-    tags                                = map(string)
+    tags                                = optional(map(string), {})
   })
 }
