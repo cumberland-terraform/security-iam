@@ -24,7 +24,9 @@ locals {
                                         local.assume_role_templatefile,
                                         { svc = "lambda", aws = null}
                                     )
-            policy_attachments      = [ ]
+            policy_attachments      = [ 
+                                        aws_iam_policy.platform["logging"].arn
+                                    ]
             instance_profile        = false
         }
     }
