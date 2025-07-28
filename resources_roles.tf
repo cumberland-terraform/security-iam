@@ -1,4 +1,7 @@
 resource "aws_iam_role" "platform_service_roles" {
+  lifecycle {
+    ignore_changes          = [ tags ]
+  }
   for_each                  = local.platform_service_roles
 
   name                      = each.value.name
