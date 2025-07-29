@@ -15,7 +15,9 @@ locals {
                                         local.assume_role_templatefile,
                                         { svc = "ec2", aws = null }
                                     )
-            policy_attachments      = [ ]
+            policy_attachments      = [ 
+                                        "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+                                    ]
             instance_profile        = true
         }
         lambda                      = {
